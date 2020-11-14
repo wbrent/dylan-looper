@@ -1,0 +1,13 @@
+#N canvas 665 177 477 350 10;
+#X obj 28 186 t b;
+#X obj 28 219 s \$1;
+#X obj 28 162 select 127;
+#X text 118 160 << with "momentary" button modes \, we just want one
+bang per button press \, so we only look for the button on state and
+filter out the release.;
+#X text 179 78 \$1: send name \; \$2: CC num \; \$3: channel num \;
+;
+#X obj 28 50 ctlin \$2 \$3;
+#X connect 0 0 1 0;
+#X connect 2 0 0 0;
+#X connect 5 0 2 0;

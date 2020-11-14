@@ -1,17 +1,25 @@
-#N canvas 525 62 799 300 12;
-#X obj 192 87 hradio 15 1 0 3 empty empty empty 0 -8 0 10 -262144 -1
--1 1;
-#X obj 179 115 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 0 1;
-#X obj 199 115 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 0 1;
-#X floatatom 202 65 5 0 0 1 decay - -;
-#X floatatom 136 85 5 0 0 0 decay - -;
-#X obj 229 115 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 0 1;
-#X text 251 85 << 3rd option is LIVE (no buffer);
-#X text 283 145 Each performer sends ONE mix that contains \, loop
-buf A \, loop buf B \, and live improv;
-#X text 283 195 Danforth EQs \, compresses that single channel in Ableton
+#N canvas 656 246 462 401 12;
+#X text 237 31 \$1: performer ID;
+#X obj 101 11 cnv 15 98 298 empty empty Perf:\$1 5 12 0 14 -261682
+-66577 0;
+#X obj 127 241 hradio 15 1 0 3 perf-\$1-input perf-\$1-input-set empty
+0 -8 0 10 -262144 -1 -1 2;
+#X floatatom 105 59 5 0 0 2 decay perf-#1-buf-A-decay-rate-set perf-#1-buf-A-decay-rate
 ;
-#X text 582 34 \$1: performer ID;
+#X floatatom 157 59 5 0 0 2 decay perf-#1-buf-B-decay-rate-set perf-#1-buf-B-decay-rate
+;
+#X obj 127 103 vsl 15 128 40 100 0 0 perf-\$1-buf-A-gain perf-\$1-buf-A-gain-set
+empty 0 -9 0 10 -262144 -1 -1 0 1;
+#X text 129 105 Buffer-A, f 1;
+#X obj 157 103 vsl 15 128 40 100 0 0 perf-\$1-buf-B-gain perf-\$1-buf-B-gain-set
+empty 0 -9 0 10 -262144 -1 -1 0 1;
+#X text 159 105 Buffer-B, f 1;
+#X obj 127 81 bng 15 250 50 0 perf-\$1-buf-A-clear-buffer perf-\$1-buf-A-clear-buffer-set
+empty 17 7 0 10 -261234 -1 -1;
+#X obj 157 81 bng 15 250 50 0 perf-\$1-buf-B-clear-buffer perf-\$1-buf-B-clear-buffer-set
+empty 17 7 0 10 -261234 -1 -1;
+#X obj 108 289 hsl 84 15 40 100 0 0 perf-\$1-master-gain perf-\$1-master-gain-set
+master 8 8 0 10 -262144 -1 -1 0 1;
+#X floatatom 130 262 5 0 0 1 LIVE perf-#1-live-gain-set perf-#1-live-gain
+;
+#X coords 0 -1 1 1 100 300 2 100 10;

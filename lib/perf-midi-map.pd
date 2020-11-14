@@ -1,0 +1,42 @@
+#N canvas 633 162 672 520 12;
+#X obj 79 386 select 127;
+#X msg 79 409 0;
+#X obj 169 386 select 127;
+#X obj 259 386 select 127;
+#X msg 169 409 2;
+#X msg 259 409 1;
+#X obj 79 452 s perf-\$1-input-set;
+#X obj 522 304 f \$1;
+#X obj 507 253 loadbang;
+#X floatatom 522 327 5 0 0 0 - - -;
+#X text 425 73 \$1: perf ID \; \$2: midi channel \;;
+#X obj 79 43 fadermap perf-\$1-master-gain 105 \$2 40 60 perf-\$1-master-gain-set
+1;
+#X obj 79 83 fadermap perf-\$1-buf-A-gain 102 \$2 40 60 perf-\$1-buf-A-gain-set
+1;
+#X obj 79 123 fadermap perf-\$1-buf-B-gain 103 \$2 40 60 perf-\$1-buf-B-gain-set
+1;
+#X obj 79 163 fadermap perf-\$1-live-gain 104 \$2 40 60 perf-\$1-live-gain-set
+1;
+#X obj 79 203 fadermap perf-\$1-buf-A-decay-rate 110 \$2 0 100 perf-\$1-buf-A-decay-rate-set
+1;
+#X obj 79 243 fadermap perf-\$1-buf-B-decay-rate 111 \$2 0 100 perf-\$1-buf-B-decay-rate-set
+1;
+#X obj 79 293 button-bang-map perf-\$1-buf-A-clear-buffer-set 11 \$2
+;
+#X obj 79 323 button-bang-map perf-\$1-buf-B-clear-buffer-set 14 \$2
+;
+#X obj 79 363 ctlin 50 \$2;
+#X obj 169 363 ctlin 51 \$2;
+#X obj 259 363 ctlin 52 \$2;
+#X connect 0 0 1 0;
+#X connect 1 0 6 0;
+#X connect 2 0 4 0;
+#X connect 3 0 5 0;
+#X connect 4 0 6 0;
+#X connect 5 0 6 0;
+#X connect 7 0 9 0;
+#X connect 8 0 7 0;
+#X connect 19 0 0 0;
+#X connect 20 0 2 0;
+#X connect 21 0 3 0;
