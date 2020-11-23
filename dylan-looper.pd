@@ -1,4 +1,4 @@
-#N canvas 95 413 561 408 12;
+#N canvas 128 409 561 408 12;
 #X declare -path ./lib;
 #N canvas 521 141 564 321 master-control-panel 0;
 #N canvas 1128 570 500 369 metronome 0;
@@ -145,21 +145,21 @@ us every beat \, 0.5 would give half a beat., f 20;
 #X obj 165 51 cnv 15 123 188 empty empty Time 5 12 0 14 -204786 -33289
 0;
 #X obj 206 104 tgl 15 0 ableton-connect empty Abl 20 8 0 12 -262144
--1 -1 1 1;
+-1 -1 0 1;
 #X obj 176 94 vradio 15 1 0 8 bars-per-loop bars-per-loop-set bars/loop
 0 -8 0 12 -262144 -1 -1 1;
 #X floatatom 206 137 5 2 6 2 time-sig time-sig-set time-sig;
 #X obj 41 51 cnv 15 123 188 empty empty Gain 5 12 0 14 -228856 -33289
 0;
-#X obj 46 213 tgl 15 0 player-1-gate player-1-gate-set 1 4 7 0 10 -262144
+#X obj 46 213 tgl 15 0 perf-1-gate perf-1-gate-set 1 4 7 0 10 -262144
 -1 -1 0 1;
-#X obj 76 213 tgl 15 0 player-2-gate player-2-gate-set 2 4 7 0 10 -262144
+#X obj 76 213 tgl 15 0 perf-2-gate perf-2-gate-set 2 4 7 0 10 -262144
 -1 -1 0 1;
 #X obj 136 86 vsl 15 128 40 100 0 0 metronome-volume metronome-volume-set
-empty 0 -9 0 10 -262144 -1 -1 0 1;
+empty 0 -9 0 10 -262144 -1 -1 8467 1;
 #X text 138 88 metronome, f 1;
 #X obj 106 86 vsl 15 128 40 100 0 0 master-gain master-gain-set empty
-0 -9 0 10 -262144 -1 -1 12700 1;
+0 -9 0 10 -262144 -1 -1 10583 1;
 #X text 108 88 MASTER, f 1;
 #X obj 77 86 vu 15 120 player-2-vu empty -1 -8 0 10 -66577 -1 0 0;
 #X obj 47 86 vu 15 120 player-1-vu empty -1 -8 0 10 -66577 -1 0 0;

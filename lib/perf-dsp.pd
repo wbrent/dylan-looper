@@ -1,4 +1,4 @@
-#N canvas 62 554 801 486 12;
+#N canvas 422 544 801 486 12;
 #X msg 87 378 clear;
 #X obj 58 289 +~;
 #X obj 274 238 *~ 0.8;
@@ -25,8 +25,8 @@
 #X obj 58 156 *~;
 #X obj 108 152 pack f 40;
 #X obj 108 175 line~;
-#X obj 108 132 r player-\$1-gate;
 #X obj 523 203 r perf-\$1-buf-\$2-gain;
+#X obj 108 132 r perf-\$1-gate;
 #X connect 0 0 11 0;
 #X connect 1 0 11 0;
 #X connect 2 0 1 1;
@@ -53,5 +53,5 @@
 #X connect 23 0 1 0;
 #X connect 24 0 25 0;
 #X connect 25 0 23 1;
-#X connect 26 0 24 0;
-#X connect 27 0 19 0;
+#X connect 26 0 19 0;
+#X connect 27 0 24 0;

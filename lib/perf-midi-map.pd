@@ -1,11 +1,11 @@
-#N canvas 633 162 672 520 12;
-#X obj 79 386 select 127;
-#X msg 79 409 0;
-#X obj 169 386 select 127;
-#X obj 259 386 select 127;
-#X msg 169 409 2;
-#X msg 259 409 1;
-#X obj 79 452 s perf-\$1-input-set;
+#N canvas 633 162 672 658 12;
+#X obj 79 456 select 127;
+#X msg 79 479 0;
+#X obj 169 456 select 127;
+#X obj 259 456 select 127;
+#X msg 169 479 2;
+#X msg 259 479 1;
+#X obj 79 522 s perf-\$1-input-set;
 #X obj 522 304 f \$1;
 #X obj 507 253 loadbang;
 #X floatatom 522 327 5 0 0 0 - - -;
@@ -22,13 +22,16 @@
 1;
 #X obj 79 243 fadermap perf-\$1-buf-B-decay-rate 111 \$2 0 100 perf-\$1-buf-B-decay-rate-set
 1;
-#X obj 79 293 button-bang-map perf-\$1-buf-A-clear-buffer-set 11 \$2
+#X obj 79 363 button-bang-map perf-\$1-buf-A-clear-buffer-set 11 \$2
 ;
-#X obj 79 323 button-bang-map perf-\$1-buf-B-clear-buffer-set 14 \$2
+#X obj 79 393 button-bang-map perf-\$1-buf-B-clear-buffer-set 14 \$2
 ;
-#X obj 79 363 ctlin 50 \$2;
-#X obj 169 363 ctlin 51 \$2;
-#X obj 259 363 ctlin 52 \$2;
+#X obj 79 433 ctlin 50 \$2;
+#X obj 169 433 ctlin 51 \$2;
+#X obj 259 433 ctlin 52 \$2;
+#X obj 464 489 > 0;
+#X obj 464 512 s perf-\$1-gate-set;
+#X obj 464 466 ctlin 64 \$2;
 #X connect 0 0 1 0;
 #X connect 1 0 6 0;
 #X connect 2 0 4 0;
@@ -40,3 +43,5 @@
 #X connect 19 0 0 0;
 #X connect 20 0 2 0;
 #X connect 21 0 3 0;
+#X connect 22 0 23 0;
+#X connect 24 0 22 0;

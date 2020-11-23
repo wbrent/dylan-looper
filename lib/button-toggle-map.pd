@@ -1,0 +1,49 @@
+#N canvas 1012 227 642 489 10;
+#X obj 30 314 f;
+#X obj 108 305 + 1;
+#X obj 108 326 % 2;
+#X obj 108 205 r \$1;
+#X obj 108 256 select \$4 \$5;
+#X msg 108 277 0;
+#X msg 148 277 1;
+#X obj 30 365 select 0 1;
+#X obj 30 386 f \$4;
+#X obj 80 386 f \$5;
+#X obj 30 173 t b b;
+#X msg 153 203 0;
+#X msg 193 203 1;
+#X obj 108 226 spigot 1;
+#X obj 30 416 t b f;
+#X obj 75 446 s \$6;
+#X obj 30 129 select 127;
+#X text 110 127 << with "momentary" button modes \, we just want one
+bang per button press \, so we only look for the button on state and
+filter out the release.;
+#X text 336 50 Use the button state of CC 0 (which is in "toggle" mode)
+to route all MIDI data to send names that incorporate player ID \$3.
+, f 44;
+#X obj 30 37 ctlin \$2 \$3;
+#X text 266 292 \$1: send name \; \$2: CC num \; \$3: MIDI port \;
+\$4: low value \; \$5: high value \; \$6: receive name \;;
+#X connect 0 0 1 0;
+#X connect 0 0 7 0;
+#X connect 1 0 2 0;
+#X connect 2 0 0 1;
+#X connect 3 0 13 0;
+#X connect 4 0 5 0;
+#X connect 4 1 6 0;
+#X connect 5 0 1 0;
+#X connect 6 0 1 0;
+#X connect 7 0 8 0;
+#X connect 7 1 9 0;
+#X connect 8 0 14 0;
+#X connect 9 0 14 0;
+#X connect 10 0 0 0;
+#X connect 10 1 11 0;
+#X connect 11 0 13 1;
+#X connect 12 0 13 1;
+#X connect 13 0 4 0;
+#X connect 14 0 12 0;
+#X connect 14 1 15 0;
+#X connect 16 0 10 0;
+#X connect 19 0 16 0;
