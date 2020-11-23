@@ -48,7 +48,7 @@
 #X obj 47 62 loadbang;
 #X obj 47 252 declare -path ./lib;
 #X msg 47 95 \; metronome-volume-set 80 \; master-gain-set 90 \; time-sig-set
-4 \; bars-per-loop-set 1 \;;
+4 \; bars-per-loop-set 1 \; pd dsp 1 \;;
 #X connect 0 0 2 0;
 #X restore 355 77 pd init;
 #N canvas 1114 68 510 504 ableton-link 0;
