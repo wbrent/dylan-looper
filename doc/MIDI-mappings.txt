@@ -15,4 +15,4 @@ CC 110: looping buffer A decay rate
 CC 111: looping buffer B decay rate
 
 CC 11: looping buffer A clear buffer
-CC 15: looping buffer B clear buffer
+CC 14: looping buffer B clear buffer
