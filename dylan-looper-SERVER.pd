@@ -21,7 +21,7 @@
 #X msg 334 141 0;
 #X obj 61 36 r beat;
 #X obj 61 59 select 0;
-#X obj 61 314 dac~ 5;
+#X obj 61 314 dac~ 3;
 #X connect 0 0 1 0;
 #X connect 1 0 2 0;
 #X connect 2 0 4 0;
@@ -47,8 +47,9 @@
 #N canvas 1065 45 346 366 init 0;
 #X obj 47 62 loadbang;
 #X obj 47 252 declare -path ./lib;
-#X msg 47 95 \; metronome-volume-set 80 \; master-gain-set 90 \; time-sig-set
-4 \; bars-per-loop-set 1 \; pd dsp 1 \;;
+#X msg 47 95 \; player-1-pan-set 0.5 \; player-2-pan-set 0.5 \; player-3-pan-set
+0.5 \; player-4-pan-set 0.5 \; metronome-volume-set 80 \; master-gain-set
+90 \; time-sig-set 4 \; bars-per-loop-set 1 \; pd dsp 1 \;;
 #X connect 0 0 2 0;
 #X restore 425 67 pd init;
 #N canvas 1114 68 510 504 ableton-link 0;
@@ -151,13 +152,13 @@ us every beat \, 0.5 would give half a beat., f 20;
 #X floatatom 286 137 5 2 6 2 time-sig time-sig-set time-sig 0;
 #X obj 41 51 cnv 15 203 188 empty empty Gain 5 12 0 14 #dcdcdc #202020
 0;
-#X obj 206 86 vsl 15 128 40 100 0 0 metronome-volume metronome-volume-set
+#X obj 222 66 vsl 15 128 40 100 0 0 metronome-volume metronome-volume-set
 empty 0 -9 0 10 #fcfcfc #000000 #000000 0 1;
-#X text 208 88 metronome, f 1;
-#X obj 176 86 vsl 15 128 40 100 0 0 master-gain master-gain-set empty
+#X text 224 68 metronome, f 1;
+#X obj 202 66 vsl 15 128 40 100 0 0 master-gain master-gain-set empty
 0 -9 0 10 #fcfcfc #000000 #000000 0 1;
-#X text 178 88 MASTER, f 1;
-#X obj 77 86 vu 15 120 player-2-vu empty -1 -8 0 10 #404040 #000000
+#X text 204 68 MASTER, f 1;
+#X obj 87 86 vu 15 120 player-2-vu empty -1 -8 0 10 #404040 #000000
 0 0;
 #X obj 47 86 vu 15 120 player-1-vu empty -1 -8 0 10 #404040 #000000
 0 0;
@@ -168,7 +169,6 @@ empty 0 -9 0 10 #fcfcfc #000000 #000000 0 1;
 #X obj 292 142 perf-signal-routing 2;
 #X obj 52 22 adc~ 1;
 #X obj 292 22 adc~ 2;
-#X obj 52 225 dac~ 1;
 #X obj 52 175 *~;
 #X obj 966 153 dbtorms;
 #X obj 966 176 pack f 40;
@@ -178,7 +178,6 @@ empty 0 -9 0 10 #fcfcfc #000000 #000000 0 1;
 #X msg 966 126 0;
 #X obj 966 47 r master-gain;
 #X obj 292 175 *~;
-#X obj 292 225 dac~ 2;
 #X obj 92 65 env~;
 #X obj 92 88 - 100;
 #X obj 92 111 s player-1-vu;
@@ -191,54 +190,73 @@ empty 0 -9 0 10 #fcfcfc #000000 #000000 0 1;
 #X obj 562 88 - 100;
 #X obj 802 65 env~;
 #X obj 802 88 - 100;
-#X obj 522 225 dac~ 3;
-#X obj 762 225 dac~ 4;
 #X obj 762 22 adc~ 4;
 #X obj 522 22 adc~ 3;
 #X obj 562 111 s player-3-vu;
 #X obj 522 142 perf-signal-routing 3;
 #X obj 762 142 perf-signal-routing 4;
 #X obj 802 111 s player-4-vu;
-#X connect 0 0 5 0;
-#X connect 1 0 13 0;
+#X obj 432 284 dac~ 1 2;
+#X obj 52 217 pan~;
+#X obj 92 217 r player-1-pan;
+#X obj 292 217 pan~;
+#X obj 522 217 pan~;
+#X obj 762 217 pan~;
+#X obj 332 217 r player-2-pan;
+#X obj 562 217 r player-3-pan;
+#X obj 802 217 r player-4-pan;
+#X connect 0 0 4 0;
+#X connect 1 0 12 0;
 #X connect 2 0 0 0;
-#X connect 2 0 15 0;
-#X connect 3 0 18 0;
+#X connect 2 0 13 0;
+#X connect 3 0 16 0;
 #X connect 3 0 1 0;
-#X connect 5 0 4 0;
+#X connect 4 0 32 0;
+#X connect 5 0 6 0;
 #X connect 6 0 7 0;
-#X connect 7 0 8 0;
-#X connect 8 0 13 1;
-#X connect 8 0 5 1;
-#X connect 8 0 22 1;
-#X connect 8 0 21 1;
+#X connect 7 0 12 1;
+#X connect 7 0 4 1;
+#X connect 7 0 20 1;
+#X connect 7 0 19 1;
+#X connect 8 0 9 0;
+#X connect 8 1 5 0;
 #X connect 9 0 10 0;
-#X connect 9 1 6 0;
-#X connect 10 0 11 0;
-#X connect 11 0 6 0;
-#X connect 12 0 9 0;
+#X connect 10 0 5 0;
+#X connect 11 0 8 0;
+#X connect 12 0 34 0;
 #X connect 13 0 14 0;
-#X connect 15 0 16 0;
+#X connect 14 0 15 0;
 #X connect 16 0 17 0;
-#X connect 18 0 19 0;
-#X connect 19 0 20 0;
-#X connect 21 0 27 0;
-#X connect 22 0 28 0;
+#X connect 17 0 18 0;
+#X connect 19 0 35 0;
+#X connect 20 0 36 0;
+#X connect 21 0 22 0;
+#X connect 22 0 27 0;
 #X connect 23 0 24 0;
-#X connect 24 0 31 0;
-#X connect 25 0 26 0;
-#X connect 26 0 34 0;
-#X connect 29 0 25 0;
-#X connect 29 0 33 0;
-#X connect 30 0 23 0;
-#X connect 30 0 32 0;
-#X connect 32 0 21 0;
-#X connect 33 0 22 0;
+#X connect 24 0 30 0;
+#X connect 25 0 23 0;
+#X connect 25 0 29 0;
+#X connect 26 0 21 0;
+#X connect 26 0 28 0;
+#X connect 28 0 19 0;
+#X connect 29 0 20 0;
+#X connect 32 0 31 0;
+#X connect 32 1 31 1;
+#X connect 33 0 32 1;
+#X connect 34 0 31 0;
+#X connect 34 1 31 1;
+#X connect 35 0 31 0;
+#X connect 35 1 31 1;
+#X connect 36 0 31 0;
+#X connect 36 1 31 1;
+#X connect 37 0 34 1;
+#X connect 38 0 35 1;
+#X connect 39 0 36 1;
 #X restore 425 185 pd DSP;
 #X floatatom 286 157 5 2 6 1 tempo tempo - 0;
-#X obj 137 86 vu 15 120 player-4-vu empty -1 -8 0 10 #404040 #000000
+#X obj 167 86 vu 15 120 player-4-vu empty -1 -8 0 10 #404040 #000000
 0 0;
-#X obj 107 86 vu 15 120 player-3-vu empty -1 -8 0 10 #404040 #000000
+#X obj 127 86 vu 15 120 player-3-vu empty -1 -8 0 10 #404040 #000000
 0 0;
 #N canvas 292 347 257 215 OSC 0;
 #X obj 44 40 perf-osc-receive 1 5004;
@@ -246,6 +264,14 @@ empty 0 -9 0 10 #fcfcfc #000000 #000000 0 1;
 #X obj 44 100 perf-osc-receive 3 5006;
 #X obj 44 130 perf-osc-receive 4 5007;
 #X restore 425 215 pd OSC;
+#X obj 49 214 hsl 24 8 0 1 0 0 player-1-pan player-1-pan-set empty
+-2 -8 0 10 #fcfcfc #000000 #000000 0 1;
+#X obj 89 214 hsl 24 8 0 1 0 0 player-2-pan player-2-pan-set empty
+-2 -8 0 10 #fcfcfc #000000 #000000 0 1;
+#X obj 129 214 hsl 24 8 0 1 0 0 player-3-pan player-3-pan-set empty
+-2 -8 0 10 #fcfcfc #000000 #000000 0 1;
+#X obj 169 214 hsl 24 8 0 1 0 0 player-4-pan player-4-pan-set empty
+-2 -8 0 10 #fcfcfc #000000 #000000 0 1;
 #X coords 0 -1 1 1 330 190 2 40 50;
 #X restore 23 44 pd master-control-panel;
 #N canvas 577 125 678 491 performer-control-panels 0;
