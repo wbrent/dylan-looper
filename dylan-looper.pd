@@ -1,6 +1,6 @@
-#N canvas 128 409 561 408 12;
+#N canvas 153 233 485 617 12;
 #X declare -path ./lib;
-#N canvas 521 141 564 321 master-control-panel 0;
+#N canvas 521 141 623 321 master-control-panel 0;
 #N canvas 1128 570 500 369 metronome 0;
 #X msg 61 132 1 5 \, 0 5 50;
 #X obj 61 155 vline~;
@@ -43,25 +43,25 @@
 #X connect 17 0 18 0;
 #X connect 18 0 0 0;
 #X connect 18 1 12 0;
-#X restore 355 107 pd metronome;
+#X restore 425 97 pd metronome;
 #N canvas 1065 45 346 366 init 0;
 #X obj 47 62 loadbang;
 #X obj 47 252 declare -path ./lib;
 #X msg 47 95 \; metronome-volume-set 80 \; master-gain-set 90 \; time-sig-set
 4 \; bars-per-loop-set 1 \; pd dsp 1 \;;
 #X connect 0 0 2 0;
-#X restore 355 77 pd init;
+#X restore 425 67 pd init;
 #N canvas 1114 68 510 504 ableton-link 0;
 #X msg 71 82 connect \$1;
-#X floatatom 168 329 5 0 0 1 beat_time - -;
-#X floatatom 131 347 5 0 0 1 phase - -;
-#X floatatom 71 453 5 0 0 0 - - -;
+#X floatatom 168 329 5 0 0 1 beat_time - - 0;
+#X floatatom 131 347 5 0 0 1 phase - - 0;
+#X floatatom 71 453 5 0 0 0 - - - 0;
 #X obj 71 431 r #abl_link_num_peers;
 #X obj 197 301 s tempo;
 #X obj 71 237 abl_link~;
 #X msg 128 149 reset 0 \$1;
 #X obj 128 125 r time-sig;
-#X floatatom 242 130 5 0 0 0 - - -;
+#X floatatom 242 130 5 0 0 0 - - - 0;
 #X obj 242 152 / 100;
 #X msg 242 175 resolution \$1;
 #X text 294 81 this is the resolution of the step. default of 1 gives
@@ -85,7 +85,7 @@ us every beat \, 0.5 would give half a beat., f 20;
 #X connect 13 0 0 0;
 #X connect 15 0 16 0;
 #X connect 16 0 17 0;
-#X restore 355 135 pd ableton-link;
+#X restore 425 125 pd ableton-link;
 #N canvas 773 245 846 433 compute-loop-dur 0;
 #X obj 470 79 t b f;
 #X msg 470 102 60000;
@@ -97,7 +97,7 @@ us every beat \, 0.5 would give half a beat., f 20;
 #X obj 264 147 + 1;
 #X obj 181 245 f;
 #X text 199 215 only update on loop reset;
-#X floatatom 271 315 10 0 0 1 ms - -;
+#X floatatom 271 315 10 0 0 1 ms - - 0;
 #X obj 536 291 t b f;
 #X obj 470 323 * 1;
 #X obj 536 266 + 1;
@@ -141,52 +141,68 @@ us every beat \, 0.5 would give half a beat., f 20;
 #X connect 22 0 24 0;
 #X connect 23 0 4 0;
 #X connect 25 0 4 1;
-#X restore 355 165 pd compute-loop-dur;
-#X obj 165 51 cnv 15 123 188 empty empty Time 5 12 0 14 -204786 -33289
+#X restore 425 155 pd compute-loop-dur;
+#X obj 245 51 cnv 15 123 188 empty empty Time 5 12 0 14 #c4fcc4 #202020
 0;
-#X obj 206 104 tgl 15 0 ableton-connect empty Abl 20 8 0 12 -262144
--1 -1 0 1;
-#X obj 176 94 vradio 15 1 0 8 bars-per-loop bars-per-loop-set bars/loop
-0 -8 0 12 -262144 -1 -1 1;
-#X floatatom 206 137 5 2 6 2 time-sig time-sig-set time-sig;
-#X obj 41 51 cnv 15 123 188 empty empty Gain 5 12 0 14 -228856 -33289
+#X obj 286 104 tgl 15 0 ableton-connect empty Abl 20 8 0 12 #fcfcfc
+#000000 #000000 0 1;
+#X obj 256 94 vradio 15 1 0 8 bars-per-loop bars-per-loop-set bars/loop
+0 -8 0 12 #fcfcfc #000000 #000000 0;
+#X floatatom 286 137 5 2 6 2 time-sig time-sig-set time-sig 0;
+#X obj 41 51 cnv 15 203 188 empty empty Gain 5 12 0 14 #dcdcdc #202020
 0;
-#X obj 46 213 tgl 15 0 perf-1-gate perf-1-gate-set 1 4 7 0 10 -262144
--1 -1 0 1;
-#X obj 76 213 tgl 15 0 perf-2-gate perf-2-gate-set 2 4 7 0 10 -262144
--1 -1 0 1;
-#X obj 136 86 vsl 15 128 40 100 0 0 metronome-volume metronome-volume-set
-empty 0 -9 0 10 -262144 -1 -1 8467 1;
-#X text 138 88 metronome, f 1;
-#X obj 106 86 vsl 15 128 40 100 0 0 master-gain master-gain-set empty
-0 -9 0 10 -262144 -1 -1 10583 1;
-#X text 108 88 MASTER, f 1;
-#X obj 77 86 vu 15 120 player-2-vu empty -1 -8 0 10 -66577 -1 0 0;
-#X obj 47 86 vu 15 120 player-1-vu empty -1 -8 0 10 -66577 -1 0 0;
-#X floatatom 206 207 5 2 6 1 beat beat-display -;
-#X floatatom 206 187 5 2 6 1 bar bar-display -;
-#N canvas 641 351 765 317 DSP 0;
+#X obj 46 213 tgl 15 0 perf-1-gate perf-1-gate-set 1 4 7 0 10 #fcfcfc
+#000000 #000000 0 1;
+#X obj 76 213 tgl 15 0 perf-2-gate perf-2-gate-set 2 4 7 0 10 #fcfcfc
+#000000 #000000 0 1;
+#X obj 206 86 vsl 15 128 40 100 0 0 metronome-volume metronome-volume-set
+empty 0 -9 0 10 #fcfcfc #000000 #000000 0 1;
+#X text 208 88 metronome, f 1;
+#X obj 176 86 vsl 15 128 40 100 0 0 master-gain master-gain-set empty
+0 -9 0 10 #fcfcfc #000000 #000000 0 1;
+#X text 178 88 MASTER, f 1;
+#X obj 77 86 vu 15 120 player-2-vu empty -1 -8 0 10 #404040 #000000
+0 0;
+#X obj 47 86 vu 15 120 player-1-vu empty -1 -8 0 10 #404040 #000000
+0 0;
+#X floatatom 286 207 5 2 6 1 beat beat-display - 0;
+#X floatatom 286 187 5 2 6 1 bar bar-display - 0;
+#N canvas 641 351 1114 317 DSP 0;
 #X obj 52 142 perf-signal-routing 1;
-#X obj 372 142 perf-signal-routing 2;
+#X obj 292 142 perf-signal-routing 2;
 #X obj 52 22 adc~ 1;
-#X obj 372 22 adc~ 2;
+#X obj 292 22 adc~ 2;
 #X obj 52 225 dac~ 1;
 #X obj 52 175 *~;
-#X obj 586 153 dbtorms;
-#X obj 586 176 pack f 40;
-#X obj 586 199 line~;
-#X obj 586 80 moses 41;
-#X obj 586 103 t b;
-#X msg 586 126 0;
-#X obj 586 47 r master-gain;
-#X obj 372 175 *~;
-#X obj 372 225 dac~ 2;
+#X obj 966 153 dbtorms;
+#X obj 966 176 pack f 40;
+#X obj 966 199 line~;
+#X obj 966 80 moses 41;
+#X obj 966 103 t b;
+#X msg 966 126 0;
+#X obj 966 47 r master-gain;
+#X obj 292 175 *~;
+#X obj 292 225 dac~ 2;
 #X obj 92 65 env~;
 #X obj 92 88 - 100;
 #X obj 92 111 s player-1-vu;
-#X obj 412 65 env~;
-#X obj 412 88 - 100;
-#X obj 412 111 s player-2-vu;
+#X obj 332 65 env~;
+#X obj 332 88 - 100;
+#X obj 332 111 s player-2-vu;
+#X obj 522 175 *~;
+#X obj 762 175 *~;
+#X obj 562 65 env~;
+#X obj 562 88 - 100;
+#X obj 802 65 env~;
+#X obj 802 88 - 100;
+#X obj 522 225 dac~ 3;
+#X obj 762 225 dac~ 4;
+#X obj 762 22 adc~ 4;
+#X obj 522 22 adc~ 3;
+#X obj 562 111 s player-3-vu;
+#X obj 522 142 perf-signal-routing 3;
+#X obj 762 142 perf-signal-routing 4;
+#X obj 802 111 s player-4-vu;
 #X connect 0 0 5 0;
 #X connect 1 0 13 0;
 #X connect 2 0 0 0;
@@ -198,6 +214,8 @@ empty 0 -9 0 10 -262144 -1 -1 8467 1;
 #X connect 7 0 8 0;
 #X connect 8 0 13 1;
 #X connect 8 0 5 1;
+#X connect 8 0 22 1;
+#X connect 8 0 21 1;
 #X connect 9 0 10 0;
 #X connect 9 1 6 0;
 #X connect 10 0 11 0;
@@ -208,16 +226,40 @@ empty 0 -9 0 10 -262144 -1 -1 8467 1;
 #X connect 16 0 17 0;
 #X connect 18 0 19 0;
 #X connect 19 0 20 0;
-#X restore 355 195 pd DSP;
-#X floatatom 206 157 5 2 6 1 tempo tempo -;
-#N canvas 943 384 218 198 MIDI 0;
+#X connect 21 0 27 0;
+#X connect 22 0 28 0;
+#X connect 23 0 24 0;
+#X connect 24 0 31 0;
+#X connect 25 0 26 0;
+#X connect 26 0 34 0;
+#X connect 29 0 25 0;
+#X connect 29 0 33 0;
+#X connect 30 0 23 0;
+#X connect 30 0 32 0;
+#X connect 32 0 21 0;
+#X connect 33 0 22 0;
+#X restore 425 185 pd DSP;
+#X floatatom 286 157 5 2 6 1 tempo tempo - 0;
+#N canvas 943 384 257 287 MIDI 0;
 #X obj 46 57 perf-midi-map 1 1;
-#X obj 46 107 perf-midi-map 2 17;
-#X restore 355 225 pd MIDI;
-#X coords 0 -1 1 1 250 190 2 40 50;
+#X obj 46 87 perf-midi-map 2 17;
+#X obj 46 117 perf-midi-map 3 33;
+#X obj 46 147 perf-midi-map 4 49;
+#X restore 425 215 pd MIDI;
+#X obj 106 213 tgl 15 0 perf-3-gate perf-3-gate-set 3 4 7 0 10 #fcfcfc
+#000000 #000000 0 1;
+#X obj 136 213 tgl 15 0 perf-4-gate perf-4-gate-set 4 4 7 0 10 #fcfcfc
+#000000 #000000 0 1;
+#X obj 137 86 vu 15 120 player-4-vu empty -1 -8 0 10 #404040 #000000
+0 0;
+#X obj 107 86 vu 15 120 player-3-vu empty -1 -8 0 10 #404040 #000000
+0 0;
+#X coords 0 -1 1 1 330 190 2 40 50;
 #X restore 23 44 pd master-control-panel;
-#N canvas 577 125 498 512 performer-control-panels 0;
+#N canvas 577 125 678 491 performer-control-panels 0;
 #X obj 100 100 perf-control-panel 1;
 #X obj 210 100 perf-control-panel 2;
-#X coords 0 -1 1 1 210 300 2 100 100;
-#X restore 303 44 pd performer-control-panels;
+#X obj 320 100 perf-control-panel 3;
+#X obj 430 100 perf-control-panel 4;
+#X coords 0 -1 1 1 430 300 2 100 100;
+#X restore 23 264 pd performer-control-panels;
