@@ -21,7 +21,7 @@
 #X msg 334 141 0;
 #X obj 61 36 r beat;
 #X obj 61 59 select 0;
-#X obj 61 314 dac~ 3;
+#X obj 61 314 dac~ 5;
 #X connect 0 0 1 0;
 #X connect 1 0 2 0;
 #X connect 2 0 4 0;
@@ -151,10 +151,6 @@ us every beat \, 0.5 would give half a beat., f 20;
 #X floatatom 286 137 5 2 6 2 time-sig time-sig-set time-sig 0;
 #X obj 41 51 cnv 15 203 188 empty empty Gain 5 12 0 14 #dcdcdc #202020
 0;
-#X obj 46 213 tgl 15 0 perf-1-gate perf-1-gate-set 1 4 7 0 10 #fcfcfc
-#000000 #000000 0 1;
-#X obj 76 213 tgl 15 0 perf-2-gate perf-2-gate-set 2 4 7 0 10 #fcfcfc
-#000000 #000000 0 1;
 #X obj 206 86 vsl 15 128 40 100 0 0 metronome-volume metronome-volume-set
 empty 0 -9 0 10 #fcfcfc #000000 #000000 0 1;
 #X text 208 88 metronome, f 1;
@@ -207,8 +203,8 @@ empty 0 -9 0 10 #fcfcfc #000000 #000000 0 1;
 #X connect 1 0 13 0;
 #X connect 2 0 0 0;
 #X connect 2 0 15 0;
-#X connect 3 0 1 0;
 #X connect 3 0 18 0;
+#X connect 3 0 1 0;
 #X connect 5 0 4 0;
 #X connect 6 0 7 0;
 #X connect 7 0 8 0;
@@ -240,20 +236,16 @@ empty 0 -9 0 10 #fcfcfc #000000 #000000 0 1;
 #X connect 33 0 22 0;
 #X restore 425 185 pd DSP;
 #X floatatom 286 157 5 2 6 1 tempo tempo - 0;
-#N canvas 943 384 257 287 MIDI 0;
-#X obj 46 57 perf-midi-map 1 1;
-#X obj 46 87 perf-midi-map 2 17;
-#X obj 46 117 perf-midi-map 3 33;
-#X obj 46 147 perf-midi-map 4 49;
-#X restore 425 215 pd MIDI;
-#X obj 106 213 tgl 15 0 perf-3-gate perf-3-gate-set 3 4 7 0 10 #fcfcfc
-#000000 #000000 0 1;
-#X obj 136 213 tgl 15 0 perf-4-gate perf-4-gate-set 4 4 7 0 10 #fcfcfc
-#000000 #000000 0 1;
 #X obj 137 86 vu 15 120 player-4-vu empty -1 -8 0 10 #404040 #000000
 0 0;
 #X obj 107 86 vu 15 120 player-3-vu empty -1 -8 0 10 #404040 #000000
 0 0;
+#N canvas 292 347 257 215 OSC 0;
+#X obj 44 40 perf-osc-receive 1 5004;
+#X obj 44 70 perf-osc-receive 2 5005;
+#X obj 44 100 perf-osc-receive 3 5006;
+#X obj 44 130 perf-osc-receive 4 5007;
+#X restore 425 215 pd OSC;
 #X coords 0 -1 1 1 330 190 2 40 50;
 #X restore 23 44 pd master-control-panel;
 #N canvas 577 125 678 491 performer-control-panels 0;

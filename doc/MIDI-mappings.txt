@@ -1,6 +1,6 @@
 Performer MIDI to GUI mappings
 
-MIDI Sustain Pedal: open mic gate
+CC 64 (MIDI Sustain Pedal): open mic gate
 
 CC 50: set target to looping buffer A
 CC 51: set target to looping buffer B

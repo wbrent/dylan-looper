@@ -1,0 +1,96 @@
+#N canvas 213 295 335 351 12;
+#X declare -path ./lib;
+#N canvas 92 117 561 489 performer-controls 0;
+#X obj 100 100 perf-control-panel 1;
+#X obj 300 100 perf-midi-map 1;
+#X obj 300 200 perf-osc-send 1;
+#X coords 0 -1 1 1 100 300 2 100 100;
+#X restore 21 23 pd performer-controls;
+#N canvas 660 250 726 394 netsend 0;
+#X obj 303 73 cnv 15 159 99 empty netsend-connected-canvas empty 20
+12 0 14 #ff0013 #fcfcfc 0;
+#X obj 306 154 tgl 15 0 server-connect server-connect-set connect 17
+7 0 12 #fcfcfc #000000 #000000 0 1;
+#X obj 64 201 select 0 1;
+#X msg 64 317 \; netsend-connected-canvas color -1.67117e+07 0 0 \;
+;
+#X symbolatom 306 110 15 0 0 1 IP server-ip-address-set server-ip-address
+0;
+#X obj 114 284 loadbang;
+#X msg 114 244 \; netsend-connected-canvas color -65281 0 0 \;;
+#N canvas 142 360 720 364 init 0;
+#X obj 89 300 declare -path ./lib;
+#X obj 57 48 loadbang;
+#X obj 57 216 s lb3;
+#X obj 87 186 s lb2;
+#X obj 117 156 s lb1;
+#X msg 278 161 \; server-ip-address-set symbol 127.0.0.1 \; server-port-set
+5004 \;;
+#X msg 278 71 \; player-id-set 0 \;;
+#X obj 278 47 r lb1;
+#X obj 57 72 t b b b;
+#X obj 278 137 r lb2;
+#X obj 278 227 r lb3;
+#X msg 278 281 \; pd dsp 0 \;;
+#X obj 278 251 delay 2;
+#X text 357 251 << without this \, the message doesn't work!;
+#X connect 1 0 8 0;
+#X connect 7 0 6 0;
+#X connect 8 0 2 0;
+#X connect 8 1 3 0;
+#X connect 8 2 4 0;
+#X connect 9 0 5 0;
+#X connect 10 0 12 0;
+#X connect 12 0 11 0;
+#X restore 522 146 pd init;
+#X obj 305 80 hradio 15 1 0 4 player-id player-id-set Player-ID 64
+7 0 12 #fcfcfc #000000 #000000 0;
+#X floatatom 306 132 10 0 65535 1 Port server-port-set server-port
+0;
+#N canvas 991 184 680 587 dynamic-patching 0;
+#X msg 269 172 \; pd-performer-controls clear \;;
+#X msg 232 227 \; pd-performer-controls obj 100 100 perf-control-panel
+\$1 \;;
+#X msg 169 277 \; pd-performer-controls obj 300 100 perf-midi-map \$1
+\;;
+#X obj 29 30 r player-id;
+#X obj 29 54 + 1;
+#X msg 109 327 \; pd-performer-controls obj 300 200 perf-osc-send \$1
+\;;
+#X obj 29 94 t b f f f b;
+#X obj 89 378 r server-ip-address;
+#X obj 29 408 symbol;
+#X obj 82 438 f;
+#X obj 122 438 r server-port;
+#X obj 29 472 pack s f;
+#X msg 29 496 \; server-ip-address \$1 \; server-port \$2 \;;
+#X obj 29 308 t b b;
+#X obj 89 402 symbol;
+#X connect 3 0 4 0;
+#X connect 4 0 6 0;
+#X connect 6 0 13 0;
+#X connect 6 1 5 0;
+#X connect 6 2 2 0;
+#X connect 6 3 1 0;
+#X connect 6 4 0 0;
+#X connect 7 0 14 0;
+#X connect 8 0 11 0;
+#X connect 9 0 11 1;
+#X connect 10 0 9 1;
+#X connect 11 0 12 0;
+#X connect 13 0 8 0;
+#X connect 13 1 9 0;
+#X connect 14 0 8 1;
+#X restore 522 116 pd dynamic-patching;
+#X obj 64 170 r server-connection-status;
+#X connect 2 0 3 0;
+#X connect 2 1 6 0;
+#X connect 5 0 3 0;
+#X connect 11 0 2 0;
+#X coords 0 -1 1 1 165 105 2 300 70;
+#X restore 131 23 pd netsend;
+#X text 139 179 To connect:;
+#X text 139 209 1) Select your Player ID;
+#X text 139 229 2) Enter server IP;
+#X text 139 249 3) Enter server port;
+#X text 139 269 4) Click "connect";

@@ -67,8 +67,8 @@
 #X msg 491 283 \; perf-\$1-buf-A-decay-rate-set 0 \; perf-\$1-buf-B-decay-rate-set
 0 \; perf-\$1-input-set 0 \; perf-\$1-buf-A-gain-set 90 \; perf-\$1-buf-B-gain-set
 90 \; perf-\$1-live-gain-set 90 \; perf-\$1-master-gain-set 90 \;;
-#X obj 491 230 loadbang;
 #X obj 491 253 f \$1;
+#X obj 501 220 loadbang;
 #X connect 0 0 22 0;
 #X connect 1 0 0 0;
 #X connect 2 0 0 1;
@@ -95,5 +95,4 @@
 #X connect 21 1 20 0;
 #X connect 21 2 2 0;
 #X connect 22 0 11 0;
-#X connect 24 0 25 0;
-#X connect 25 0 23 0;
+#X connect 24 0 23 0;

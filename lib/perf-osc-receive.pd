@@ -1,0 +1,63 @@
+#N canvas 495 149 834 775 12;
+#X obj 59 49 oscparse;
+#X obj 59 251 route buf-A buf-B live master;
+#X obj 59 173 list trim;
+#X obj 59 81 list split 1;
+#X obj 189 173 makefilename %s;
+#X obj 189 119 loadbang;
+#X obj 189 143 f \$1;
+#X obj 59 197 route;
+#X obj 189 197 list fromsymbol;
+#X obj 59 105 list fromsymbol;
+#X obj 59 129 list append;
+#X text 336 84 Ridiculously \, since OSC address names are composed
+exclusively of symbols \, and this abstraction takes a float argument
+\, we must convert the float argument to a symbol version \, get the
+ASCII numeric code for it \, and use that as the search key for [route].
+Accordingly \, we need to split the first symbol off of the incoming
+OSC address and convert it to its ASCII numeric code. All of this is
+in order to cater to [route] \, which will only take floats in its
+right inlet \, and we can't use this abstraction's \$1 value as a creation
+argument to [route] since that will be interpreted as a float.;
+#X obj 59 679 s perf-\$1-buf-A-gain-set;
+#X obj 149 649 s perf-\$1-buf-A-decay-rate-set;
+#X obj 59 585 route gain decay-rate clear-buffer;
+#X obj 229 619 s perf-\$1-buf-A-clear-buffer-set;
+#X obj 149 445 route gain decay-rate clear-buffer;
+#X obj 149 539 s perf-\$1-buf-B-gain-set;
+#X obj 239 509 s perf-\$1-buf-B-decay-rate-set;
+#X obj 319 479 s perf-\$1-buf-B-clear-buffer-set;
+#X obj 199 365 route gain;
+#X obj 199 389 s perf-\$1-live-gain-set;
+#X obj 418 308 route gain input gate;
+#X obj 418 402 s perf-\$1-master-gain-set;
+#X obj 508 372 s perf-\$1-input-set;
+#X obj 588 342 s perf-\$1-gate-set;
+#X obj 59 25 netreceive -u -b \$2;
+#X text 250 16 \$1: performer ID (1-4) \; \$2: port number;
+#X connect 0 0 3 0;
+#X connect 1 0 14 0;
+#X connect 1 1 16 0;
+#X connect 1 2 20 0;
+#X connect 1 3 22 0;
+#X connect 2 0 7 0;
+#X connect 3 0 9 0;
+#X connect 3 1 10 1;
+#X connect 4 0 8 0;
+#X connect 5 0 6 0;
+#X connect 6 0 4 0;
+#X connect 7 0 1 0;
+#X connect 8 0 7 1;
+#X connect 9 0 10 0;
+#X connect 10 0 2 0;
+#X connect 14 0 12 0;
+#X connect 14 1 13 0;
+#X connect 14 2 15 0;
+#X connect 16 0 17 0;
+#X connect 16 1 18 0;
+#X connect 16 2 19 0;
+#X connect 20 0 21 0;
+#X connect 22 0 23 0;
+#X connect 22 1 24 0;
+#X connect 22 2 25 0;
+#X connect 26 0 0 0;
