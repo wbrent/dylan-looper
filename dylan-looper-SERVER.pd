@@ -1,4 +1,4 @@
-#N canvas 153 233 485 617 12;
+#N canvas 75 172 485 617 12;
 #X declare -path ./lib;
 #N canvas 521 141 752 321 master-control-panel 0;
 #N canvas 1128 570 500 369 metronome 0;
@@ -54,10 +54,10 @@
 #N canvas 1065 45 346 366 init 0;
 #X obj 47 62 loadbang;
 #X obj 47 282 declare -path ./lib;
-#X msg 47 95 \; player-1-pan-set 0.5 \; player-2-pan-set 0.5 \; player-3-pan-set
-0.5 \; player-4-pan-set 0.5 \; metronome-volume-set 80 \; metronome-dac-stereo-set
-0 \; master-gain-set 90 \; time-sig-set 4 \; bars-per-loop-set 1 \;
-pd dsp 1 \;;
+#X msg 47 95 \; player-1-pan-set 0.5 \; player-2-pan-set 0.25 \; player-3-pan-set
+0.75 \; player-4-pan-set 0.5 \; metronome-volume-set 80 \; metronome-dac-stereo-set
+0 \; master-gain-set 100 \; tempo-set 90 \; time-sig-set 4 \; bars-per-loop-set
+1 \; limiter-bypass-set 0 \; pd dsp 1 \;;
 #X connect 0 0 2 0;
 #X restore 425 67 pd init;
 #N canvas 1114 68 510 504 ableton-link 0;
