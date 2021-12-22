@@ -1,4 +1,4 @@
-#N canvas 126 246 543 617 12;
+#N canvas 154 206 543 617 12;
 #X declare -path ./lib;
 #X declare -path ./lib/quack;
 #N canvas 661 98 1008 476 master-control-panel 0;
@@ -694,7 +694,7 @@ r 4 8 0 10 #fcfcfc #000000 #000000 0 1;
 #X restore 695 125 pd remote-audio;
 #X obj 221 222 tgl 15 0 limiter-switch limiter-switch-set l 4 7 0 10
 #fcfcfc #000000 #000000 0 1;
-#N canvas 733 61 895 470 TODO 1;
+#N canvas 733 61 895 470 TODO 0;
 #X text 89 46 TODO:;
 #X text 89 196 2) make a client patch that incorporates a quacktrip
 panel and netsend for ping measurement. otherwise \, it doesn't look
