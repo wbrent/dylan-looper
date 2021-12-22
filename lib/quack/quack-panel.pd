@@ -476,9 +476,6 @@ running bw, f 68;
 #X obj 506 47 b;
 #X obj 566 119 f;
 #X floatatom 573 145 5 0 0 0 - - - 0;
-#X msg 27 419 \; \$1-onoff 0 \; \$1-fifo-size 10 \; \$1-server symbol
-foo.ucsd.edu \; \$1-call-name symbol this-call-name \; \$1-block 64
-\; \$1-nchan 2 \;;
 #X text 28 107 input delay;
 #X obj 525 613 s \$0-fifo-size;
 #X obj 30 560 route server call-name on-off block nchan 2x delay;
@@ -496,6 +493,11 @@ foo.ucsd.edu \; \$1-call-name symbol this-call-name \; \$1-block 64
 #X obj 1037 405 * 1000;
 #X obj 1194 408 s perf-\$1-quack-min-fill;
 #X obj 1208 380 s perf-\$1-quack-max-fill;
+#X msg 27 419 \; \$1-onoff 0 \; \$1-fifo-size 100 \; \$1-server symbol
+foo.ucsd.edu \; \$1-call-name symbol this-call-name \; \$1-block 64
+\; \$1-nchan 2 \;;
+#X obj 71 367 select 1;
+#X obj 151 367 r server-connection-status;
 #X connect 0 0 65 0;
 #X connect 0 0 75 0;
 #X connect 0 1 69 0;
@@ -504,7 +506,7 @@ foo.ucsd.edu \; \$1-call-name symbol this-call-name \; \$1-block 64
 #X connect 4 0 0 0;
 #X connect 5 0 0 1;
 #X connect 25 0 27 0;
-#X connect 26 0 140 0;
+#X connect 26 0 157 0;
 #X connect 27 0 26 0;
 #X connect 30 0 31 0;
 #X connect 31 0 32 0;
@@ -518,7 +520,7 @@ foo.ucsd.edu \; \$1-call-name symbol this-call-name \; \$1-block 64
 #X connect 37 0 39 0;
 #X connect 38 0 37 1;
 #X connect 39 0 42 0;
-#X connect 46 0 143 0;
+#X connect 46 0 142 0;
 #X connect 48 0 49 0;
 #X connect 50 0 51 0;
 #X connect 52 0 53 0;
@@ -570,7 +572,7 @@ foo.ucsd.edu \; \$1-call-name symbol this-call-name \; \$1-block 64
 #X connect 121 5 56 0;
 #X connect 121 6 52 0;
 #X connect 121 6 45 0;
-#X connect 121 7 148 0;
+#X connect 121 7 147 0;
 #X connect 121 8 47 0;
 #X connect 124 0 0 2;
 #X connect 126 0 128 0;
@@ -586,19 +588,21 @@ foo.ucsd.edu \; \$1-call-name symbol this-call-name \; \$1-block 64
 #X connect 136 1 138 0;
 #X connect 137 0 133 0;
 #X connect 138 0 139 0;
-#X connect 143 0 48 0;
-#X connect 143 1 50 0;
-#X connect 143 2 123 0;
-#X connect 143 3 103 0;
-#X connect 143 4 104 0;
-#X connect 143 5 119 0;
-#X connect 143 6 142 0;
-#X connect 148 0 154 0;
-#X connect 148 1 155 0;
-#X connect 148 2 149 0;
-#X connect 148 2 156 0;
-#X connect 148 3 150 0;
-#X connect 148 3 157 0;
-#X connect 154 0 153 0;
-#X connect 155 0 152 0;
+#X connect 142 0 48 0;
+#X connect 142 1 50 0;
+#X connect 142 2 123 0;
+#X connect 142 3 103 0;
+#X connect 142 4 104 0;
+#X connect 142 5 119 0;
+#X connect 142 6 141 0;
+#X connect 147 0 153 0;
+#X connect 147 1 154 0;
+#X connect 147 2 148 0;
+#X connect 147 2 155 0;
+#X connect 147 3 149 0;
+#X connect 147 3 156 0;
+#X connect 153 0 152 0;
+#X connect 154 0 151 0;
+#X connect 158 0 27 0;
+#X connect 159 0 158 0;
 #X coords 0 -1 1 1 300 300 1 20 50;

@@ -1,12 +1,10 @@
-#N canvas 792 357 1005 485 12;
+#N canvas 261 226 715 485 12;
 #X obj 65 60 r perf-\$1-avg-ping;
 #X obj 33 25 r loop-dur;
 #X obj 33 129 -;
 #X obj 65 84 t b f;
 #X obj 33 403 s perf-\$1-remote-delay;
-#X obj 65 180 r quack-buffering;
 #X obj 65 204 * 64;
-#X obj 65 288 * 2;
 #X obj 65 312 t b f;
 #X obj 33 369 -;
 #X text 149 17 start with the duration (ms) of one loop at the current
@@ -17,36 +15,52 @@ settings;
 #X obj 65 262 * 1000;
 #X obj 125 208 samplerate~;
 #X obj 125 232 t b f;
-#X text 149 261 subtract the buffering delay caused by quacktrip's
-delay buffer. this value represents multiples of the block size (64
-samples by default. note that this seems to refer to Pd's block size
-\, not the block size chosen in the quacktrip panel). we divide by
-the sampling rate and multiply by 1000 to convert to ms. finally \,
-the same buffering is done on both the server and client side of the
-quacktrip connection \, so we multiply this by two.;
-#X text 263 138 **** Logically \, this should account for all of the
-delays involved on both sides except for the Pd app's I/O delay setting
-\, which should only be relevant on the client side. however \, i did
-get better alignment when i only accounted for one side of the quack
-buffering rather than for both the server and client. this could be
-a coincidence and may have to do with the changing "fill" values shown
-in the quack panel that indicate how far offset the buffered audio
-is from the latest incoming block. maybe a good strategy would be to
-get this information into the calculation as well., f 95;
+#X obj 65 288 +;
+#X obj 265 204 * 64;
+#X obj 265 238 /;
+#X obj 265 262 * 1000;
+#X obj 325 208 samplerate~;
+#X obj 325 232 t b f;
+#X floatatom 92 368 10 0 0 0 - - - 0;
+#X obj 65 150 r quack-buffering-local;
+#X obj 265 150 r quack-buffering-remote;
+#X obj 65 174 t f b;
+#X obj 265 174 t f b;
+#X obj 265 286 t b f;
+#X text 232 328 subtract the delay caused by quacktrip's delay buffer.
+the quack-buffering values here are based on the average "fill" value
+as reported locally and remotely. this value represents multiples of
+the block size (64 samples by default. note that this seems to refer
+to Pd's block size \, not the block size chosen in the quacktrip panel).
+we divide by the sampling rate and multiply by 1000 to convert to ms.
+;
 #X connect 0 0 3 0;
 #X connect 1 0 2 0;
-#X connect 2 0 9 0;
+#X connect 2 0 7 0;
 #X connect 3 0 2 0;
-#X connect 3 0 14 0;
 #X connect 3 1 2 1;
-#X connect 5 0 6 0;
-#X connect 6 0 12 0;
-#X connect 7 0 8 0;
-#X connect 8 0 9 0;
-#X connect 8 1 9 1;
-#X connect 9 0 4 0;
+#X connect 5 0 10 0;
+#X connect 6 0 7 0;
+#X connect 6 1 7 1;
+#X connect 7 0 4 0;
+#X connect 7 0 20 0;
+#X connect 10 0 11 0;
+#X connect 11 0 14 0;
 #X connect 12 0 13 0;
-#X connect 13 0 7 0;
-#X connect 14 0 15 0;
-#X connect 15 0 12 0;
-#X connect 15 1 12 1;
+#X connect 13 0 10 0;
+#X connect 13 1 10 1;
+#X connect 14 0 6 0;
+#X connect 15 0 16 0;
+#X connect 16 0 17 0;
+#X connect 17 0 25 0;
+#X connect 18 0 19 0;
+#X connect 19 0 16 0;
+#X connect 19 1 16 1;
+#X connect 21 0 23 0;
+#X connect 22 0 24 0;
+#X connect 23 0 5 0;
+#X connect 23 1 12 0;
+#X connect 24 0 15 0;
+#X connect 24 1 18 0;
+#X connect 25 0 14 0;
+#X connect 25 1 14 1;

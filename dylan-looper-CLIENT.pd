@@ -4,7 +4,7 @@
 #N canvas 92 117 561 489 performer-controls 0;
 #X obj 100 100 perf-control-panel 1;
 #X obj 300 50 client-quack-abs 1;
-#X obj 300 100 client-ping-abs 1;
+#X obj 300 100 client-transmit-abs 1;
 #X obj 300 150 perf-midi-map 1;
 #X obj 300 200 perf-osc-send 1;
 #X coords 0 -1 1 1 115 300 2 100 100;
@@ -71,28 +71,28 @@
 0 \; perf-\$1-live-gain-set 0 \; perf-\$1-main-volume-set 100 \;;
 #X msg 348 388 \; pd-performer-controls obj 300 150 perf-midi-map \$1
 \;;
-#X msg 408 338 \; pd-performer-controls obj 300 100 client-ping-abs
-\$1 \;;
 #X obj 29 84 t b b f f f f f f b;
 #X msg 468 288 \; pd-performer-controls obj 300 50 client-quack-abs
 \$1 \;;
+#X msg 408 338 \; pd-performer-controls obj 300 100 client-transmit-abs
+\$1 \;;
 #X connect 2 0 3 0;
-#X connect 3 0 15 0;
+#X connect 3 0 14 0;
 #X connect 5 0 11 0;
 #X connect 6 0 9 0;
 #X connect 7 0 9 1;
 #X connect 8 0 7 1;
 #X connect 9 0 10 0;
 #X connect 11 0 6 1;
-#X connect 15 0 6 0;
-#X connect 15 1 7 0;
-#X connect 15 2 12 0;
-#X connect 15 3 4 0;
-#X connect 15 4 13 0;
-#X connect 15 5 14 0;
-#X connect 15 6 16 0;
-#X connect 15 7 1 0;
-#X connect 15 8 0 0;
+#X connect 14 0 6 0;
+#X connect 14 1 7 0;
+#X connect 14 2 12 0;
+#X connect 14 3 4 0;
+#X connect 14 4 13 0;
+#X connect 14 5 16 0;
+#X connect 14 6 15 0;
+#X connect 14 7 1 0;
+#X connect 14 8 0 0;
 #X restore 522 116 pd dynamic-patching;
 #X obj 64 170 r server-connection-status;
 #X text 96 409 Need to add a DAC that receives the metronome and full
