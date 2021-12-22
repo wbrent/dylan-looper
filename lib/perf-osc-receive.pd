@@ -30,7 +30,7 @@ argument to [route] since that will be interpreted as a float.;
 #X obj 199 365 route gain;
 #X obj 199 389 s perf-\$1-live-gain-set;
 #X obj 418 308 route gain input gate;
-#X obj 418 402 s perf-\$1-master-gain-set;
+#X obj 418 402 s perf-\$1-main-volume-set;
 #X obj 508 372 s perf-\$1-input-set;
 #X obj 588 342 s perf-\$1-gate-set;
 #X obj 59 25 netreceive -u -b \$2;

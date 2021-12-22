@@ -10,7 +10,7 @@
 #X obj 507 253 loadbang;
 #X floatatom 522 327 5 0 0 0 - - -;
 #X text 425 73 \$1: perf ID \; \$2: midi channel \;;
-#X obj 79 43 fadermap perf-\$1-master-gain 105 \$2 40 60 perf-\$1-master-gain-set
+#X obj 79 43 fadermap perf-\$1-main-volume 105 \$2 40 60 perf-\$1-main-volume-set
 1;
 #X obj 79 83 fadermap perf-\$1-buf-A-gain 102 \$2 40 60 perf-\$1-buf-A-gain-set
 1;
