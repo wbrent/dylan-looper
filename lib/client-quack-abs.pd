@@ -1,0 +1,27 @@
+#N canvas 1049 424 418 432 12;
+#X floatatom 51 390 5 0 0 1 ms perf-\$1-avg-ping - 0;
+#X text 131 392 average ping time;
+#X obj 52 44 cnv 15 302 30 empty client-\$1-quack-abs-canvas-label-set
+Performer-1 20 12 0 14 #e0e0e0 #404040 0;
+#N canvas 735 407 835 546 client-\$1-quack-controls 0;
+#X obj 52 72 quack-panel \$1;
+#X text 383 208 \$1: performer ID \;;
+#X obj 405 336 f \$1;
+#X obj 385 336 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#000000 #000000;
+#X obj 53 16 adc~ 1;
+#X obj 405 312 loadbang;
+#X msg 405 360 \; client-\$1-quack-abs-canvas-label-set label Performer-\$1
+\;;
+#X text 120 15 presumably each individual client can use input 1 of
+the ADC. could make this selectable.;
+#X obj 362 437 s~ metronome-signal;
+#X obj 52 437 s~ full-mix-signal;
+#X connect 0 0 9 0;
+#X connect 0 1 8 0;
+#X connect 2 0 6 0;
+#X connect 3 0 2 0;
+#X connect 4 0 0 0;
+#X connect 5 0 2 0;
+#X coords 0 -1 1 1 304 304 2 50 70;
+#X restore 51 80 pd client-\$1-quack-controls;

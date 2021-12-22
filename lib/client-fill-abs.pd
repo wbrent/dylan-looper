@@ -1,0 +1,11 @@
+#N canvas 1065 482 502 266 12;
+#X obj 47 24 inlet;
+#X obj 47 88 route min-fill max-fill;
+#X text 305 83 \$1: performer ID \;;
+#X obj 47 192 s perf-\$1-remote-quack-min-fill;
+#X obj 157 152 s perf-\$1-remote-quack-max-fill;
+#X obj 224 120 outlet;
+#X connect 0 0 1 0;
+#X connect 1 0 3 0;
+#X connect 1 1 4 0;
+#X connect 1 2 5 0;
