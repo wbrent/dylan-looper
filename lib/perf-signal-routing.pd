@@ -11,7 +11,7 @@
 #X obj 217 362 t b;
 #X msg 217 385 0;
 #X obj 36 384 *~;
-#X obj 217 306 r perf-\$1-master-gain;
+#X obj 217 306 r perf-\$1-main-volume;
 #X obj 349 185 dbtorms;
 #X obj 349 208 pack f 40;
 #X obj 349 231 line~;
@@ -28,7 +28,7 @@
 #X obj 137 283 outlet~;
 #X obj 237 260 *~;
 #X obj 237 283 outlet~;
-#X obj 317 37 r perf-\$1-input;
+#X obj 317 37 r perf-\$1-sig-target;
 #X obj 317 60 select 0 1 2;
 #X msg 317 103 1 0 0;
 #X msg 377 103 0 1 0;
@@ -67,8 +67,9 @@
 #X obj 491 253 f \$1;
 #X obj 491 220 loadbang;
 #X msg 491 283 \; perf-\$1-buf-A-decay-rate-set 0 \; perf-\$1-buf-B-decay-rate-set
-0 \; perf-\$1-input-set 0 \; perf-\$1-buf-A-gain-set 0 \; perf-\$1-buf-B-gain-set
-0 \; perf-\$1-live-gain-set 90 \; perf-\$1-master-gain-set 90 \;;
+0 \; perf-\$1-sig-target-set 0 \; perf-\$1-buf-A-gain-set 0 \; perf-\$1-buf-B-gain-set
+0 \; perf-\$1-live-gain-set 0 \; perf-\$1-main-volume-set 100 \;;
+#X text 535 120 \$1: performer ID \;;
 #X connect 0 0 22 0;
 #X connect 1 0 0 0;
 #X connect 2 0 0 1;

@@ -1,0 +1,28 @@
+#N canvas 1067 260 418 432 12;
+#N canvas 735 407 835 546 perf-\$1-quack-controls 1;
+#X obj 52 72 quack-panel \$1;
+#X obj 345 16 r~ metronome-signal;
+#X obj 53 16 r~ full-mix-signal;
+#X obj 52 437 s~ perf-\$1-remote-signal;
+#X text 383 208 \$1: performer ID \;;
+#X obj 405 312 r lb4;
+#X obj 405 336 f \$1;
+#X obj 385 336 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#000000 #000000;
+#X msg 405 360 \; perf-\$1-quack-abs-canvas-label-set label Performer-\$1
+\;;
+#X obj 52 397 perf-remote-delay-abs \$1;
+#X connect 0 0 9 0;
+#X connect 1 0 0 1;
+#X connect 2 0 0 0;
+#X connect 5 0 6 0;
+#X connect 6 0 8 0;
+#X connect 7 0 6 0;
+#X connect 9 0 3 0;
+#X coords 0 -1 1 1 304 304 2 50 70;
+#X restore 51 80 pd perf-\$1-quack-controls;
+#X floatatom 51 390 5 0 0 1 ms perf-\$1-avg-ping - 0;
+#X text 131 392 average ping time;
+#X obj 259 50 inlet;
+#X obj 52 44 cnv 15 302 30 empty perf-\$1-quack-abs-canvas-label-set
+Performer-1 20 12 0 14 #e0e0e0 #404040 0;
