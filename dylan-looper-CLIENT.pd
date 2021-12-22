@@ -1,4 +1,4 @@
-#N canvas 239 352 381 351 12;
+#N canvas 223 354 381 351 12;
 #X declare -path ./lib;
 #N canvas 92 117 561 489 performer-controls 0;
 #X obj 100 100 perf-control-panel 1;
@@ -8,7 +8,7 @@
 #X restore 21 23 pd performer-controls;
 #N canvas 660 250 726 394 netsend 0;
 #X obj 303 73 cnv 15 179 99 empty netsend-connected-canvas empty 20
-12 0 14 #00ff00 #fcfcfc 0;
+12 0 14 #ff0013 #fcfcfc 0;
 #X obj 306 154 tgl 15 0 server-connect server-connect-set connect 17
 7 0 12 #fcfcfc #000000 #000000 0 1;
 #X obj 64 201 select 0 1;
@@ -48,11 +48,9 @@
 #X floatatom 306 132 10 0 65535 1 Port server-port-set server-port
 0;
 #N canvas 858 266 861 606 dynamic-patching 0;
-#X msg 448 173 \; pd-performer-controls clear \;;
-#X msg 411 228 \; pd-performer-controls obj 100 100 perf-control-panel
+#X msg 498 123 \; pd-performer-controls clear \;;
+#X msg 461 178 \; pd-performer-controls obj 100 100 perf-control-panel
 \$1 \;;
-#X msg 348 278 \; pd-performer-controls obj 300 100 perf-midi-map \$1
-\;;
 #X obj 29 30 r perf-id;
 #X obj 29 54 + 1;
 #X msg 288 328 \; pd-performer-controls obj 300 200 perf-osc-send \$1
@@ -64,25 +62,30 @@
 #X obj 29 492 pack s f;
 #X msg 29 516 \; server-ip-address \$1 \; server-port \$2 \;;
 #X obj 89 422 symbol;
-#X obj 29 84 t b b f f f f b;
 #X msg 257 417 \; perf-\$1-buf-A-decay-rate-set 0 \; perf-\$1-buf-B-decay-rate-set
 0 \; perf-\$1-sig-target-set 0 \; perf-\$1-buf-A-gain-set 0 \; perf-\$1-buf-B-gain-set
 0 \; perf-\$1-live-gain-set 0 \; perf-\$1-main-volume-set 100 \;;
-#X connect 3 0 4 0;
-#X connect 4 0 13 0;
-#X connect 6 0 12 0;
-#X connect 7 0 10 0;
-#X connect 8 0 10 1;
-#X connect 9 0 8 1;
-#X connect 10 0 11 0;
-#X connect 12 0 7 1;
-#X connect 13 0 7 0;
-#X connect 13 1 8 0;
-#X connect 13 2 14 0;
-#X connect 13 3 5 0;
-#X connect 13 4 2 0;
-#X connect 13 5 1 0;
-#X connect 13 6 0 0;
+#X msg 348 278 \; pd-performer-controls obj 300 150 perf-midi-map \$1
+\;;
+#X msg 408 228 \; pd-performer-controls obj 300 100 client-ping-abs
+\$1 \;;
+#X obj 29 84 t b b f f f f f b;
+#X connect 2 0 3 0;
+#X connect 3 0 15 0;
+#X connect 5 0 11 0;
+#X connect 6 0 9 0;
+#X connect 7 0 9 1;
+#X connect 8 0 7 1;
+#X connect 9 0 10 0;
+#X connect 11 0 6 1;
+#X connect 15 0 6 0;
+#X connect 15 1 7 0;
+#X connect 15 2 12 0;
+#X connect 15 3 4 0;
+#X connect 15 4 13 0;
+#X connect 15 5 14 0;
+#X connect 15 6 1 0;
+#X connect 15 7 0 0;
 #X restore 522 116 pd dynamic-patching;
 #X obj 64 170 r server-connection-status;
 #X connect 2 0 3 0;
