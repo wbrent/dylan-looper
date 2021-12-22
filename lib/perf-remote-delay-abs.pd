@@ -14,15 +14,12 @@
 #X obj 136 114 delwrite~ perf-\$1-remote-delay-buf 30000;
 #X text 188 53 Is 30sec long enough for the slowest tempo combined
 with largest bars/loop value?;
-#X obj 407 147 r bar;
-#X obj 407 171 select 0;
-#X text 491 138 Only update this on the first downbeat of the loop?
-Or is it better to have a very slowly moving variable delay based on
-the live average ping time?;
 #X obj 447 297 r perf-\$1-remote-audio;
 #X floatatom 423 223 10 0 0 0 - - - 0;
+#X obj 407 147 r perf-\$1-gate;
+#X obj 407 171 select 1;
 #X connect 0 0 2 1;
-#X connect 2 0 18 0;
+#X connect 2 0 15 0;
 #X connect 2 0 11 0;
 #X connect 3 0 6 0;
 #X connect 3 0 12 0;
@@ -34,6 +31,6 @@ the live average ping time?;
 #X connect 9 0 10 0;
 #X connect 10 0 6 1;
 #X connect 11 0 7 0;
-#X connect 14 0 15 0;
-#X connect 15 0 2 0;
-#X connect 17 0 7 1;
+#X connect 14 0 7 1;
+#X connect 16 0 17 0;
+#X connect 17 0 2 0;

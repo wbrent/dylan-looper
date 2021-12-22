@@ -16,17 +16,15 @@ settings;
 #X obj 125 208 samplerate~;
 #X obj 125 232 t b f;
 #X obj 65 288 +;
-#X obj 265 204 * 64;
-#X obj 265 238 /;
-#X obj 265 262 * 1000;
-#X obj 325 208 samplerate~;
-#X obj 325 232 t b f;
+#X obj 325 204 * 64;
+#X obj 325 238 /;
+#X obj 325 262 * 1000;
+#X obj 385 208 samplerate~;
+#X obj 385 232 t b f;
 #X floatatom 92 368 10 0 0 0 - - - 0;
-#X obj 65 150 r quack-buffering-local;
-#X obj 265 150 r quack-buffering-remote;
 #X obj 65 174 t f b;
-#X obj 265 174 t f b;
-#X obj 265 286 t b f;
+#X obj 325 174 t f b;
+#X obj 325 286 t b f;
 #X text 232 328 subtract the delay caused by quacktrip's delay buffer.
 the quack-buffering values here are based on the average "fill" value
 as reported locally and remotely. this value represents multiples of
@@ -34,6 +32,8 @@ the block size (64 samples by default. note that this seems to refer
 to Pd's block size \, not the block size chosen in the quacktrip panel).
 we divide by the sampling rate and multiply by 1000 to convert to ms.
 ;
+#X obj 65 150 r perf-\$1-quack-buffering-local;
+#X obj 325 150 r perf-\$1-quack-buffering-remote;
 #X connect 0 0 3 0;
 #X connect 1 0 2 0;
 #X connect 2 0 7 0;
@@ -52,15 +52,15 @@ we divide by the sampling rate and multiply by 1000 to convert to ms.
 #X connect 14 0 6 0;
 #X connect 15 0 16 0;
 #X connect 16 0 17 0;
-#X connect 17 0 25 0;
+#X connect 17 0 23 0;
 #X connect 18 0 19 0;
 #X connect 19 0 16 0;
 #X connect 19 1 16 1;
-#X connect 21 0 23 0;
-#X connect 22 0 24 0;
-#X connect 23 0 5 0;
-#X connect 23 1 12 0;
-#X connect 24 0 15 0;
-#X connect 24 1 18 0;
-#X connect 25 0 14 0;
-#X connect 25 1 14 1;
+#X connect 21 0 5 0;
+#X connect 21 1 12 0;
+#X connect 22 0 15 0;
+#X connect 22 1 18 0;
+#X connect 23 0 14 0;
+#X connect 23 1 14 1;
+#X connect 25 0 21 0;
+#X connect 26 0 22 0;

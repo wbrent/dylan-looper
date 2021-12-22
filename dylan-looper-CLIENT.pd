@@ -34,10 +34,8 @@
 #X obj 57 72 t b b b;
 #X obj 278 137 r lb2;
 #X obj 278 227 r lb3;
-#X msg 278 281 \; pd dsp 0 \;;
-#X obj 278 251 delay 2;
-#X text 357 251 << without this \, the message doesn't work!;
 #X obj 49 310 declare -path ./lib/quack;
+#X msg 278 281 \; pd dsp 1 \;;
 #X connect 1 0 8 0;
 #X connect 7 0 6 0;
 #X connect 8 0 2 0;
@@ -45,7 +43,6 @@
 #X connect 8 2 4 0;
 #X connect 9 0 5 0;
 #X connect 10 0 12 0;
-#X connect 12 0 11 0;
 #X restore 522 146 pd init;
 #X obj 305 80 hradio 15 1 0 4 perf-id perf-id-set Performer-ID 64 7
 0 12 #fcfcfc #000000 #000000 0;

@@ -1,0 +1,26 @@
+#N canvas 1170 405 375 518 12;
+#X obj 58 181 +;
+#X obj 58 205 / 2;
+#X floatatom 88 235 5 0 0 0 - - - 0;
+#X obj 58 341 +;
+#X obj 58 365 / 2;
+#X floatatom 88 395 5 0 0 0 - - - 0;
+#X text 54 47 Get the average fill value on the remote and local sides
+of the quacktrip call. These values are needed to compute the appropriate
+delay of the client signal., f 30;
+#X obj 58 157 r perf-\$1-quack-min-fill;
+#X obj 98 181 r perf-\$1-quack-max-fill;
+#X obj 58 317 r perf-\$1-remote-quack-min-fill;
+#X obj 98 341 r perf-\$1-remote-quack-max-fill;
+#X obj 58 259 s perf-\$1-quack-buffering-local;
+#X obj 58 419 s perf-\$1-quack-buffering-remote;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 1 0 11 0;
+#X connect 3 0 4 0;
+#X connect 4 0 5 0;
+#X connect 4 0 12 0;
+#X connect 7 0 0 0;
+#X connect 8 0 0 1;
+#X connect 9 0 3 0;
+#X connect 10 0 3 1;
