@@ -1,6 +1,4 @@
 #N canvas 1049 424 418 432 12;
-#X floatatom 51 390 5 0 0 1 ms perf-\$1-avg-ping - 0;
-#X text 131 392 average ping time;
 #X obj 52 44 cnv 15 302 30 empty client-\$1-quack-abs-canvas-label-set
 Performer-1 20 12 0 14 #e0e0e0 #404040 0;
 #N canvas 735 407 835 546 client-\$1-quack-controls 0;

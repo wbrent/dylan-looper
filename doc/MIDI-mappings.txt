@@ -9,7 +9,8 @@ CC 52: set target to live input
 CC 102: looping buffer A gain
 CC 103: looping buffer B gain
 CC 104: live input gain
-CC 105: master gain
+CC 105: main volume
+CC 10: main volume mute
 
 CC 110: looping buffer A decay rate
 CC 111: looping buffer B decay rate

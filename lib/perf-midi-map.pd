@@ -32,6 +32,7 @@
 #X obj 464 512 s perf-\$1-gate-set;
 #X obj 464 466 ctlin 64 \$2;
 #X obj 79 522 s perf-\$1-sig-target-set;
+#X obj 79 333 button-bang-map perf-\$1-main-mute-set 10 \$2;
 #X connect 0 0 1 0;
 #X connect 1 0 24 0;
 #X connect 2 0 4 0;

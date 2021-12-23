@@ -1,4 +1,4 @@
-#N canvas 223 354 361 352 12;
+#N canvas 235 367 361 352 12;
 #X declare -path ./lib;
 #X declare -path ./lib/quack;
 #N canvas 92 117 561 489 performer-controls 0;
@@ -15,38 +15,40 @@
 #X obj 306 154 tgl 15 0 server-connect server-connect-set connect 17
 7 0 12 #fcfcfc #000000 #000000 0 1;
 #X obj 64 201 select 0 1;
-#X msg 64 317 \; netsend-connected-canvas color -1.67117e+07 0 0 \;
+#X msg 64 347 \; netsend-connected-canvas color -1.67117e+07 0 0 \;
 ;
-#X symbolatom 306 110 15 0 0 1 IP server-ip-address-set server-ip-address
+#X symbolatom 306 110 20 0 0 1 IP server-ip-address-set server-ip-address
 0;
-#X obj 114 284 loadbang;
-#X msg 114 244 \; netsend-connected-canvas color -65281 0 0 \;;
-#N canvas 142 360 720 364 init 0;
+#X obj 114 314 loadbang;
+#N canvas 142 360 623 364 init 0;
 #X obj 49 280 declare -path ./lib;
 #X obj 57 48 loadbang;
 #X obj 57 216 s lb3;
 #X obj 87 186 s lb2;
 #X obj 117 156 s lb1;
-#X msg 278 161 \; server-ip-address-set symbol 127.0.0.1 \; server-port-set
-5004 \;;
 #X msg 278 71 \; perf-id-set 0 \;;
 #X obj 278 47 r lb1;
 #X obj 57 72 t b b b;
 #X obj 278 137 r lb2;
-#X obj 278 227 r lb3;
 #X obj 49 310 declare -path ./lib/quack;
-#X msg 278 281 \; pd dsp 1 \;;
-#X connect 1 0 8 0;
-#X connect 7 0 6 0;
-#X connect 8 0 2 0;
-#X connect 8 1 3 0;
-#X connect 8 2 4 0;
-#X connect 9 0 5 0;
-#X connect 10 0 12 0;
+#X msg 278 161 \; server-ip-address-set symbol 127.0.0.1 \;;
+#X msg 278 281 \; pd dsp 0 \;;
+#X obj 278 251 delay 2;
+#X obj 278 227 r lb3;
+#X text 366 251 << this DSP off message doesn't work without a delay
+of about one block, f 29;
+#X connect 1 0 7 0;
+#X connect 6 0 5 0;
+#X connect 7 0 2 0;
+#X connect 7 1 3 0;
+#X connect 7 2 4 0;
+#X connect 8 0 10 0;
+#X connect 12 0 11 0;
+#X connect 13 0 12 0;
 #X restore 522 146 pd init;
 #X obj 305 80 hradio 15 1 0 4 perf-id perf-id-set Performer-ID 64 7
 0 12 #fcfcfc #000000 #000000 0;
-#X floatatom 306 132 10 0 65535 1 Port server-port-set server-port
+#X floatatom 306 132 12 0 65535 1 Port server-port-set server-port
 0;
 #N canvas 842 48 971 713 dynamic-patching 0;
 #X msg 548 183 \; pd-performer-controls clear \;;
@@ -63,43 +65,48 @@
 #X obj 29 602 pack s f;
 #X msg 29 626 \; server-ip-address \$1 \; server-port \$2 \;;
 #X obj 89 532 symbol;
-#X msg 257 527 \; perf-\$1-buf-A-decay-rate-set 0 \; perf-\$1-buf-B-decay-rate-set
-0 \; perf-\$1-sig-target-set 0 \; perf-\$1-buf-A-gain-set 0 \; perf-\$1-buf-B-gain-set
-0 \; perf-\$1-live-gain-set 0 \; perf-\$1-main-volume-set 100 \;;
 #X msg 348 388 \; pd-performer-controls obj 300 150 perf-midi-map \$1
 \;;
-#X obj 29 84 t b b f f f f f f b;
 #X msg 468 288 \; pd-performer-controls obj 300 50 client-quack-abs
 \$1 \;;
 #X msg 408 338 \; pd-performer-controls obj 300 100 client-transmit-abs
 \$1 \;;
+#X obj 527 497 + 57120;
+#X msg 257 527 \; perf-\$1-buf-A-decay-rate-set 0 \; perf-\$1-buf-B-decay-rate-set
+0 \; perf-\$1-sig-target-set 0 \; perf-\$1-buf-A-gain-set 0 \; perf-\$1-buf-B-gain-set
+0 \; perf-\$1-live-gain-set 0 \; perf-\$1-main-volume-set 100 \;;
+#X obj 29 84 t b f f f f f f f f b;
+#X msg 527 527 \; server-port-set \$1 \;;
 #X connect 2 0 3 0;
-#X connect 3 0 14 0;
+#X connect 3 0 17 0;
 #X connect 5 0 11 0;
 #X connect 6 0 9 0;
 #X connect 7 0 9 1;
 #X connect 8 0 7 1;
 #X connect 9 0 10 0;
 #X connect 11 0 6 1;
-#X connect 14 0 6 0;
-#X connect 14 1 7 0;
-#X connect 14 2 12 0;
-#X connect 14 3 4 0;
-#X connect 14 4 13 0;
-#X connect 14 5 16 0;
-#X connect 14 6 15 0;
-#X connect 14 7 1 0;
-#X connect 14 8 0 0;
+#X connect 15 0 18 0;
+#X connect 17 0 6 0;
+#X connect 17 1 16 0;
+#X connect 17 2 15 0;
+#X connect 17 3 4 0;
+#X connect 17 4 12 0;
+#X connect 17 5 14 0;
+#X connect 17 6 13 0;
+#X connect 17 7 1 0;
+#X connect 17 8 0 0;
 #X restore 522 116 pd dynamic-patching;
 #X obj 64 170 r server-connection-status;
 #X text 96 409 Need to add a DAC that receives the metronome and full
 mix signals. maybe each performer should be able to balance those levels
 individually. Need a way to get the ping time from the server to update
 the average ping field for the client here.;
+#X msg 114 244 \; pd dsp 1 \; netsend-connected-canvas color -65281
+0 0 \;;
 #X connect 2 0 3 0;
-#X connect 2 1 6 0;
+#X connect 2 1 12 0;
 #X connect 5 0 3 0;
-#X connect 11 0 2 0;
+#X connect 10 0 2 0;
 #X coords 0 -1 1 1 185 105 2 300 70;
 #X restore 151 23 pd netsend;
 #N canvas 746 187 797 391 audio-mixer 0;
@@ -111,38 +118,43 @@ the average ping field for the client here.;
 #X obj 60 175 bng 15 250 50 0 empty empty remote-audio 17 7 0 10 #00faff
 #000000 #000000;
 #X msg 60 250 \; pd-client-quack-abs.pd vis 1;
-#X obj 63 152 hsl 128 15 40 100 0 0 metronome-gain metronome-gain-set
+#X obj 63 122 hsl 128 15 40 100 0 0 metronome-gain metronome-gain-set
 metronome 8 8 0 10 #fcfcfc #000000 #000000 0 1;
-#X obj 63 132 hsl 128 15 40 100 0 0 full-mix-gain full-mix-gain-set
+#X obj 63 102 hsl 128 15 40 100 0 0 full-mix-gain full-mix-gain-set
 full-mix 8 8 0 10 #fcfcfc #000000 #000000 0 1;
 #X obj 273 116 env~;
 #X obj 273 140 - 100;
 #X obj 209 68 vu 15 120 empty empty -1 -8 0 10 #404040 #000000 0 0
 ;
-#X obj 480 124 r full-mix-gain;
-#X obj 480 148 moses 41;
-#X obj 480 172 t b;
-#X msg 480 196 0;
-#X obj 480 220 dbtorms;
-#X obj 480 244 pack f 40;
-#X obj 480 268 line~;
-#X obj 620 148 moses 41;
-#X obj 620 172 t b;
-#X msg 620 196 0;
-#X obj 620 220 dbtorms;
-#X obj 620 244 pack f 40;
-#X obj 620 268 line~;
-#X obj 620 124 r metronome-gain;
+#X obj 480 174 r full-mix-gain;
+#X obj 480 198 moses 41;
+#X obj 480 222 t b;
+#X msg 480 246 0;
+#X obj 480 270 dbtorms;
+#X obj 480 294 pack f 40;
+#X obj 480 318 line~;
+#X obj 620 198 moses 41;
+#X obj 620 222 t b;
+#X msg 620 246 0;
+#X obj 620 270 dbtorms;
+#X obj 620 294 pack f 40;
+#X obj 620 318 line~;
+#X obj 620 174 r metronome-gain;
 #N canvas 1022 499 442 196 init 0;
 #X obj 39 48 r lb1;
-#X msg 39 72 \; full-mix-gain-set 100 \; metronome-gain-set 80 \;;
+#X msg 39 72 \; full-mix-gain-set 100 \; metronome-gain-set 80 \; metronome-pan-set
+1 \;;
 #X connect 0 0 1 0;
 #X restore 351 302 pd init;
+#X obj 63 142 hsl 24 8 0 1 0 0 metronome-pan metronome-pan-set metronome-pan
+32 4 0 10 #fcfcfc #000000 #000000 0 1;
+#X obj 515 115 pan~;
+#X obj 565 115 r metronome-pan;
 #X connect 1 0 2 0;
 #X connect 1 0 9 0;
 #X connect 2 0 0 0;
 #X connect 2 0 0 1;
-#X connect 3 0 0 1;
+#X connect 3 0 28 0;
 #X connect 4 0 3 0;
 #X connect 5 0 6 0;
 #X connect 9 0 10 0;
@@ -163,5 +175,8 @@ full-mix 8 8 0 10 #fcfcfc #000000 #000000 0 1;
 #X connect 23 0 24 0;
 #X connect 24 0 3 1;
 #X connect 25 0 19 0;
+#X connect 28 0 0 0;
+#X connect 28 1 0 1;
+#X connect 29 0 28 1;
 #X coords 0 -1 1 1 185 150 1 50 50;
 #X restore 151 143 pd audio-mixer;

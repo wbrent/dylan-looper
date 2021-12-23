@@ -1,4 +1,4 @@
-#N canvas 154 206 543 617 12;
+#N canvas 99 202 543 617 12;
 #X declare -path ./lib;
 #X declare -path ./lib/quack;
 #N canvas 661 98 1008 476 master-control-panel 0;
@@ -480,11 +480,11 @@ the difference between the measured and desired level, f 27;
 0 0;
 #X obj 130 98 vu 26 120 perf-3-vu empty -1 -8 0 10 #404040 #000000
 0 0;
-#N canvas 292 347 257 215 OSC 0;
-#X obj 44 40 perf-osc-receive 1 5004;
-#X obj 44 70 perf-osc-receive 2 5005;
-#X obj 44 100 perf-osc-receive 3 5006;
-#X obj 44 130 perf-osc-receive 4 5007;
+#N canvas 292 347 298 215 OSC 0;
+#X obj 44 40 perf-osc-receive 1 57121;
+#X obj 44 130 perf-osc-receive 4 57124;
+#X obj 44 100 perf-osc-receive 3 57123;
+#X obj 44 70 perf-osc-receive 2 57122;
 #X restore 505 215 pd OSC;
 #X obj 52 82 hsl 24 8 0 1 0 0 perf-1-pan perf-1-pan-set empty -2 -8
 0 10 #fcfcfc #000000 #000000 0 1;
